@@ -5,15 +5,30 @@ import core.base.ProblemModel;
 import core.base.Representation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+class NullModel implements ProblemModel
+{
+
+    @Override
+    public boolean isFeasible(Representation rep) {
+        return true;
+    }
+}
+
 
 public class SimpleOptimizationProblem implements OptimizationProblem {
 
-    ProblemModel model;
+    ProblemModel model= new NullModel();
     List<ObjectiveFunction> objectives;
 
     public SimpleOptimizationProblem(ProblemModel model) {
         this.model = model;
+        objectives = new ArrayList<>();
+    }
+
+    public SimpleOptimizationProblem() {
         objectives = new ArrayList<>();
     }
 
@@ -53,5 +68,15 @@ public class SimpleOptimizationProblem implements OptimizationProblem {
     @Override
     public ObjectiveType objectiveType() {
         return objectives.get(0).type();
+    }
+
+    @Override
+    public int objectiveCount() {
+        return objectives.size();
+    }
+
+    @Override
+    public void addObjective(ObjectiveFunction... objList) {
+        objectives.addAll(Arrays.asList(objList));
     }
 }

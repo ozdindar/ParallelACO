@@ -1,5 +1,6 @@
 package core.base;
 
+import core.ObjectiveFunction;
 import core.ObjectiveType;
 
 public interface OptimizationProblem {
@@ -12,4 +13,8 @@ public interface OptimizationProblem {
     double[] objectiveValues(Representation r);
     ObjectiveType objectiveType(int index);
     ObjectiveType objectiveType();
+
+    int objectiveCount();
+
+    void addObjective(ObjectiveFunction...objList);
 }

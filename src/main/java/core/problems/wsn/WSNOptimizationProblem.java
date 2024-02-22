@@ -45,4 +45,14 @@ public class WSNOptimizationProblem implements OptimizationProblem {
     public ObjectiveType objectiveType() {
         return objectiveFunction.type();
     }
+
+    @Override
+    public int objectiveCount() {
+        return 1;
+    }
+
+    @Override
+    public void addObjective(ObjectiveFunction... objList) {
+        throw new RuntimeException("You can not add objective to a Singole-Objective OA");
+    }
 }
